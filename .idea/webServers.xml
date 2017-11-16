@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="364ba815-fc22-4f40-9432-e4fd26211f82" name="Victor API" url="http://api.victorblancogarcia.com">
+        <fileTransfer host="api.victorblancogarcia.com" port="22" privateKey="C:\Users\victo\Desktop\victor.ppk" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
