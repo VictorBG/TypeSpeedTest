@@ -18,6 +18,9 @@ var incorrectChars;
 
 var totalChars;
 
+var cpm;
+var wpm;
+
 $(document).ready(function () {
     generateWords();
 });
@@ -189,11 +192,12 @@ function interval() {
     var loopTime = setInterval(function () {
         timeContainer.innerHTML = "Tiempo restante: " + (60 - seconds) + "s";
         if (seconds >= 60) {
-            clearInterval(loopTime);
             isRunning = false;
             totalChars += currentWord.length;
-            //generateWords();
+            console.log("Time ran out\n\nStats:\nWPM: " + wpm + "\nCPM: " + cpm + "\nCorrect chars: " + correctChars + "\nTotal chars: " + totalChars);
             //calcSpeed();
+            clearInterval(loopTime);
+            generateWords();
         } else {
             seconds++;
         }
@@ -208,8 +212,8 @@ function getRandomNumber(max, min) {
 function calcSpeed() {
     if (!seconds) return;
 
-    var cpm = Math.floor(correctChars / seconds * 60);
-    var wpm = Math.round(cpm / 5);
+    cpm = Math.floor(correctChars / seconds * 60);
+    wpm = Math.round(cpm / 5);
 
     wpmContainer.innerHTML = "WPM: " + Math.round(wpm);
     cpmContainer.innerHTML = "CPM: " + cpm;
