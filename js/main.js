@@ -8,6 +8,7 @@ var index = 0;
 
 var wpmContainer;
 var cpmContainer;
+var timeContainer;
 
 var lastCharCorrect = false;
 var lastCharNull = false;
@@ -77,8 +78,13 @@ function generateWords() {
         cpmContainer.setAttribute("class", "infoBox");
         cpmContainer.innerHTML = "CPM: 0";
 
+        timeContainer = document.createElement("div");
+        timeContainer.setAttribute("class", "infoBox");
+        timeContainer.innerHTML = "Tiempo restante: 60s";
+
         infoContainer.appendChild(wpmContainer);
         infoContainer.appendChild(cpmContainer);
+        infoContainer.appendChild(timeContainer);
 
         document.body.appendChild(infoContainer);
 
@@ -181,11 +187,12 @@ function handleKey(letter) {
 
 function interval() {
     var loopTime = setInterval(function () {
+        timeContainer.innerHTML = "Tiempo restante: " + (60 - seconds) + "s";
         if (seconds >= 60) {
             clearInterval(loopTime);
             isRunning = false;
             totalChars += currentWord.length;
-            generateWords();
+            //generateWords();
             //calcSpeed();
         } else {
             seconds++;
@@ -199,10 +206,9 @@ function getRandomNumber(max, min) {
 }
 
 function calcSpeed() {
-    var $seconds = time() - this.startTime;
-    if (!$seconds) return;
+    if (!seconds) return;
 
-    var cpm = Math.floor(correctChars / $seconds * 60);
+    var cpm = Math.floor(correctChars / seconds * 60);
     var wpm = Math.round(cpm / 5);
 
     wpmContainer.innerHTML = "WPM: " + Math.round(wpm);
