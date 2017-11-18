@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="364ba815-fc22-4f40-9432-e4fd26211f82" name="Victor API" url="http://api.victorblancogarcia.com">
-        <fileTransfer host="api.victorblancogarcia.com" port="22" privateKey="C:\Users\VictorB\Desktop\victor.ppk" accessType="SFTP" keyPair="true">
+        <fileTransfer host="api.victorblancogarcia.com" port="22" privateKey="C:\Users\victo\Desktop\victor.ppk" accessType="SFTP" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

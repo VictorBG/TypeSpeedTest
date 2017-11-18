@@ -44,7 +44,7 @@ function generateWords() {
         //generate 500 words randomly
         var resultJson = [];
         for (var i = 0; i < 500; i++) {
-            resultJson.push(data[getRandomNumber(5000, 1)]);
+            resultJson.push(data[getRandomNumber(8999, 1)]);
         }
 
         wordsArray = resultJson;
@@ -61,7 +61,7 @@ function generateWords() {
 
         document.body.appendChild(containerDiv);
 
-        for (i = 0; i < 500; i++) {
+        for (i = 0; i < 750; i++) {
             var spanTag = document.createElement('span');
             spanTag.setAttribute("class", "word");
             spanTag.setAttribute("id", "word_" + i);
@@ -144,8 +144,13 @@ function handleKey(letter) {
         input.setAttribute("placeholder", '');
         totalChars += currentWord.length;
 
+        var span=document.getElementById("word_"+index);
+        span.setAttribute("class", "word");
         index++;
         currentWord = wordsArray[index];
+
+        var currentSpan=document.getElementById("word_"+index);
+        currentSpan.setAttribute("class", "current_word");
 
         calcSpeed();
     } else {
