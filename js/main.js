@@ -98,8 +98,7 @@ function generateWords() {
 
         }
 
-        console.log("Container width: " + containerWidth);
-        console.log("LastIndexes: " + lastIndexLines);
+
 
         //Info container
         var infoContainer = document.createElement('div');
@@ -176,7 +175,6 @@ function onKeyUp(letter) {
 function moveLine() {
     actualLine++;
     $('#words_container').animate({scrollTop: (actualLine - 1) * 66}, 500);
-    console.log((actualLine - 1) * 60);
 }
 
 function calcLine() {
@@ -191,6 +189,7 @@ function handleKey(letter) {
     if (letter === 32) {
         //calculate correct chars
         var value = input.value;
+        value = value.replace(/ /g, '');
 
         if (value.length - 1 === currentWord.length && value.charAt(value.length - 1) === wordsArray[index + 1].charAt(0)) {
             input.value = value.charAt(value.length - 1);
@@ -198,7 +197,6 @@ function handleKey(letter) {
             input.value = '';
         }
 
-        value.replace(" ", "");
 
         for (var o = 0; o < currentWord.length; o++) {
             if (currentWord.charAt(o) === value.charAt(o)) correctChars++;

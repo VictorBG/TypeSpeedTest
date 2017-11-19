@@ -30,8 +30,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="191" column="33" lean-forward="false" selection-start-line="191" selection-start-column="33" selection-end-line="191" selection-end-column="33" />
+            <state relative-caret-position="271">
+              <caret line="176" column="75" lean-forward="false" selection-start-line="176" selection-start-column="75" selection-end-line="176" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -65,6 +65,7 @@
       <find>P</find>
       <find>K</find>
       <find>59</find>
+      <find>console</find>
     </findStrings>
     <replaceStrings>
       <replace>u</replace>
@@ -203,7 +204,7 @@
       <workItem from="1510864009305" duration="105000" />
       <workItem from="1511003215702" duration="3021000" />
       <workItem from="1511089278058" duration="8980000" />
-      <workItem from="1511099818544" duration="1159000" />
+      <workItem from="1511099818544" duration="1681000" />
     </task>
     <task id="LOCAL-00001" summary="uu">
       <created>1511012221103</created>
@@ -226,11 +227,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511099996498</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Keyboard lag input hotfix">
+      <created>1511103058497</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1511103058497</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17991000" />
+    <option name="totallyTimeSpent" value="18513000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
@@ -267,7 +275,8 @@
     <MESSAGE value="uu" />
     <MESSAGE value="Done" />
     <MESSAGE value="Removed input lag" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed input lag" />
+    <MESSAGE value="Keyboard lag input hotfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Keyboard lag input hotfix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -437,6 +446,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -459,8 +469,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="191" column="33" lean-forward="false" selection-start-line="191" selection-start-column="33" selection-end-line="191" selection-end-column="33" />
+        <state relative-caret-position="271">
+          <caret line="176" column="75" lean-forward="false" selection-start-line="176" selection-start-column="75" selection-end-line="176" selection-end-column="75" />
           <folding />
         </state>
       </provider>
