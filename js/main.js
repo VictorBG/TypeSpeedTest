@@ -189,13 +189,14 @@ function handleKey(letter) {
     if (letter === 32) {
         //calculate correct chars
         var value = input.value;
+        input.value = '';
         value.replace(" ", "");
 
         for (var o = 0; o < currentWord.length; o++) {
             if (currentWord.charAt(o) === value.charAt(o)) correctChars++;
         }
 
-        input.value = '';
+
         input.removeAttribute("placeholder");
         input.setAttribute("placeholder", '');
         totalChars += currentWord.length;
