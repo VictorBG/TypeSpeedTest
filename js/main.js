@@ -28,6 +28,8 @@ var lastIndexLines = [];
 
 var heightWord = 0;
 
+var lastValue = "";
+
 $(document).ready(function () {
     generateWords();
 });
@@ -189,7 +191,13 @@ function handleKey(letter) {
     if (letter === 32) {
         //calculate correct chars
         var value = input.value;
-        input.value = '';
+
+        if (value.length - 1 === currentWord.length && value.charAt(value.length - 1) === wordsArray[index + 1].charAt(0)) {
+            input.value = value.charAt(value.length - 1);
+        } else {
+            input.value = '';
+        }
+
         value.replace(" ", "");
 
         for (var o = 0; o < currentWord.length; o++) {
