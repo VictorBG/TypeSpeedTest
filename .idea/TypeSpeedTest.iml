@@ -13,5 +13,6 @@
     <orderEntry type="library" name="main" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="material" level="application" />
+    <orderEntry type="library" name="material" level="application" />
   </component>
 </module>

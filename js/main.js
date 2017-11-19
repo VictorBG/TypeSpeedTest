@@ -21,6 +21,13 @@ var totalChars;
 var cpm;
 var wpm;
 
+var dialog;
+
+var actualLine = 0;
+var lastIndexLines = [];
+
+var heightWord = 0;
+
 $(document).ready(function () {
     generateWords();
 });
@@ -51,6 +58,8 @@ function generateWords() {
 
         //Create web
 
+        dialog = document.querySelector("dialog");
+
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
@@ -61,13 +70,34 @@ function generateWords() {
 
         document.body.appendChild(containerDiv);
 
+        var containerWidth = containerDiv.offsetWidth;
+        var lineWidth = 0;
+
         for (i = 0; i < 750; i++) {
             var spanTag = document.createElement('span');
             spanTag.setAttribute("class", "word");
             spanTag.setAttribute("id", "word_" + i);
             spanTag.innerHTML = resultJson[i] + " ";
             containerDiv.appendChild(spanTag);
+
+            if (heightWord === 0) heightWord = spanTag.offsetHeight;
+
+            var elementWidth = spanTag.offsetWidth;
+
+            if (lineWidth + elementWidth > containerWidth) {
+                lineWidth = elementWidth;
+                lastIndexLines.push(i);
+            } else {
+                lineWidth += elementWidth;
+            }
         }
+
+        for (i = 0; i < 750; i++) {
+
+        }
+
+        console.log("Container width: " + containerWidth);
+        console.log("LastIndexes: " + lastIndexLines);
 
         //Info container
         var infoContainer = document.createElement('div');
@@ -104,6 +134,17 @@ function generateWords() {
 
         containerEdit.appendChild(input);
         document.body.appendChild(containerEdit);
+        document.body.appendChild(dialog);
+
+        var moreInfoBox = document.createElement("div");
+        moreInfoBox.setAttribute("class", "moreInfoBox");
+        moreInfoBox.innerHTML = "Pulsa espacio para cambiar de palabra<br><br><strong>WPM:</strong> Words per minute<br><strong>CPM:</strong> Chars per minute";
+
+        document.body.appendChild(moreInfoBox);
+
+        if (!dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+        }
 
         $("#playlistUrl").keyup(function (event) {
             onKeyUp(event.which);
@@ -116,6 +157,9 @@ function onKeyUp(letter) {
     if (!isRunning) {
         isRunning = true;
 
+        var span = document.getElementById("word_" + index);
+        span.setAttribute("class", "current_word");
+
         currentWord = wordsArray[0];
         handleKey(letter);
 
@@ -124,6 +168,20 @@ function onKeyUp(letter) {
 
     } else {
         handleKey(letter);
+    }
+}
+
+function moveLine() {
+    actualLine++;
+    $('#words_container').animate({scrollTop: (actualLine - 1) * 66}, 500);
+    console.log((actualLine - 1) * 60);
+}
+
+function calcLine() {
+    if (actualLine === 0 && index <= lastIndexLines[0]) return;
+    else if (actualLine === 0 && index > lastIndexLines[0]) actualLine = 1;
+    if (index >= lastIndexLines[actualLine]) {
+        moveLine();
     }
 }
 
@@ -137,22 +195,22 @@ function handleKey(letter) {
             if (currentWord.charAt(o) === value.charAt(o)) correctChars++;
         }
 
-        console.log("Correct chars: " + correctChars);
-
         input.value = '';
         input.removeAttribute("placeholder");
         input.setAttribute("placeholder", '');
         totalChars += currentWord.length;
 
-        var span=document.getElementById("word_"+index);
+        var span = document.getElementById("word_" + index);
         span.setAttribute("class", "word");
         index++;
         currentWord = wordsArray[index];
 
-        var currentSpan=document.getElementById("word_"+index);
+        var currentSpan = document.getElementById("word_" + index);
         currentSpan.setAttribute("class", "current_word");
 
         calcSpeed();
+
+        calcLine();
     } else {
 
         var inputValue = input.value;
@@ -195,15 +253,29 @@ function handleKey(letter) {
 
 function interval() {
     var loopTime = setInterval(function () {
-        timeContainer.innerHTML = "Tiempo restante: " + (60 - seconds) + "s";
+        timeContainer.innerHTML = "<strong>Tiempo restante:</strong> " + (60 - seconds) + "s";
         if (seconds >= 60) {
             isRunning = false;
             totalChars += currentWord.length;
-            console.log("Time ran out\n\nStats:\nWPM: " + wpm + "\nCPM: " + cpm + "\nCorrect chars: " + correctChars + "\nTotal chars: " + totalChars);
-            //calcSpeed();
+
+            calcSpeed();
+
+            dialog.showModal();
+            dialog.querySelector('button').addEventListener('click', function () {
+                dialog.close();
+                generateWords();
+            });
+
+            var wpmResult = document.getElementById("wpm_result");
+            wpmResult.innerHTML = Math.round(wpm);
+
+            var cpmResult = document.getElementById("cpm_result");
+            cpmResult.innerHTML = cpm;
+
             clearInterval(loopTime);
-            generateWords();
+
         } else {
+            calcSpeed();
             seconds++;
         }
     }, 1000);
@@ -220,8 +292,8 @@ function calcSpeed() {
     cpm = Math.floor(correctChars / seconds * 60);
     wpm = Math.round(cpm / 5);
 
-    wpmContainer.innerHTML = "WPM: " + Math.round(wpm);
-    cpmContainer.innerHTML = "CPM: " + cpm;
+    wpmContainer.innerHTML = "<strong>WPM:</strong> " + Math.round(wpm);
+    cpmContainer.innerHTML = "<strong>CPM:</strong> " + cpm;
 
 
 }

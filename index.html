@@ -13,6 +13,8 @@
 
     <meta charset="UTF-8">
     <title>Type Speed Test</title>
+    <link rel="stylesheet" href="dialog-polyfill/dialog-polyfill.css">
+    <script src="dialog-polyfill/dialog-polyfill.js"></script>
 </head>
 <style>
     body, html {
@@ -22,8 +24,19 @@
 
     #background {
         height: 100%;
-        background: black no-repeat center;
+        background: url("http://api.victorblancogarcia.com/typespeedtest/uploads/images/black_bg_anime_3.jpg") no-repeat center;
         background-size: cover;
+    }
+
+    .moreInfoBox {
+        width: 50%;
+        font-family: 'Roboto', sans-serif;
+        margin-top: 16px;
+        margin-left: 25%;
+        margin-right: 25%;
+        color: white;
+        text-align: center;
+        font-size: 16px;
     }
 
     #words_container {
@@ -44,16 +57,17 @@
     }
 
     .current_word {
-        text-decoration: underline;
         font-weight: bold;
         font-size: 32px;
-        text-decoration-color: white;
+        background: #374e4a;
+        border-radius: 5px;
+        height: 59px;
     }
 
     .word {
         font-weight: bold;
-
         font-size: 32px;
+        height: 59px;
     }
 
     .correct_word_current {
@@ -84,8 +98,6 @@
         color: #ff0000;
     }
 
-
-
     .divinput {
         border-radius: 66px;
         margin-top: 24px;
@@ -113,10 +125,8 @@
         font-family: 'Roboto', sans-serif;
         margin-left: 25%;
         margin-right: 25%;
-        font-weight: bold;
-        font-size: 24px;
+        font-size: 18px;
         display: flex;
-
 
     }
 
@@ -124,11 +134,43 @@
         font-family: 'Roboto', sans-serif;
         text-align: center;
         flex: 1;
-        margin-top: 34px;
+        margin-top: 48px;
         color: white;
     }
+
+    .kanna_image {
+        width: auto;
+        height: 300px;
+    }
+
+    p {
+        font-family: 'Roboto', sans-serif;
+        color: black;
+    }
+
+    dialog {
+        width: 321px;
+        height: auto;
+    }
+
 </style>
 <body id="background">
-
+<dialog class="mdl-dialog">
+    <div class="mdl-dialog__content">
+        <img align="middle" class="kanna_image" src="uploads/images/kanna_yay.png"/>
+        <br>
+        <br>
+        <p><strong>Resultados:</strong></p>
+        <br>
+        <p><strong>WPM: </strong>
+            <span id="wpm_result"></span>
+            <br>
+        <p><strong>CPM: </strong>
+            <span id="cpm_result"></span>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button">Ok</button>
+    </div>
+</dialog>
 </body>
 </html>
