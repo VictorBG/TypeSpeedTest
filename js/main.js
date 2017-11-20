@@ -52,7 +52,7 @@ function generateWords() {
     $.getJSON('http://api.victorblancogarcia.com/typespeedtest/palabras.json', function (data) {
         //generate 500 words randomly
         var resultJson = [];
-        for (var i = 0; i < 500; i++) {
+        for (var i = 0; i < 750; i++) {
             resultJson.push(data[getRandomNumber(8999, 1)]);
         }
 
@@ -191,6 +191,7 @@ function handleKey(letter) {
         var value = input.value;
         value = value.replace(/ /g, '');
 
+        //Hotfix to prevent the key being erased if the keyboard send the key before the space
         if (value.length - 1 === currentWord.length && value.charAt(value.length - 1) === wordsArray[index + 1].charAt(0)) {
             input.value = value.charAt(value.length - 1);
         } else {
