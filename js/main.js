@@ -49,7 +49,7 @@ function generateWords() {
     startTime = 0;
 
     //load json
-    $.getJSON('http://api.victorblancogarcia.com/typespeedtest/palabras.json', function (data) {
+    $.getJSON('https://victorblancogarcia.com/proyectos/typespeedtest/palabras.json', function (data) {
         //generate 500 words randomly
         var resultJson = [];
         for (var i = 0; i < 750; i++) {
