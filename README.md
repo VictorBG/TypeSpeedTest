@@ -1,3 +1,3 @@
 # TypeSpeedTest
 
-Spanish type speed test: http://api.victorblancogarcia.com/typespeedtest
+Spanish type speed test: https://victorblancogarcia.com/proyectos/typespeedtest/
