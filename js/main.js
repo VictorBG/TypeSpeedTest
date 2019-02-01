@@ -94,11 +94,6 @@ function generateWords() {
             }
         }
 
-        for (i = 0; i < 750; i++) {
-
-        }
-
-
 
         //Info container
         var infoContainer = document.createElement('div');
